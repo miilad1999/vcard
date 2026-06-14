@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #0a0f1e;
+        font-family: "Inter", sans-serif;
+        color: #e8edf5;
+        display: flex;
+        justify-content: center;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: #0a0f1e;
+        overflow: hidden;
+      }
+
+      .hero {
+        position: relative;
+        height: 260px;
+        background: #0d1428;
+        overflow: hidden;
+      }
+
+      .globe-svg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.18;
+      }
+
+      .route-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to bottom, transparent, #0a0f1e);
+      }
+
+      .hero-tagline {
+        position: absolute;
+        top: 22px;
+        left: 22px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #4a6fa5;
+      }
+
+      .identity {
+        padding: 0 24px;
+        margin-top: -18px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .company-logo-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .company-logo {
+        height: 78px;
+        width: auto;
+      }
+
+      .company-name {
+        font-size: 52px;
+        line-height: 1;
+      }
+
+      .logo-mark {
+        width: 52px;
+        height: 52px;
+        background: #c8922a;
+        border-radius: 4px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .company-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 46px;
+        line-height: 1;
+        letter-spacing: 0.04em;
+        color: #e8edf5;
+      }
+
+      .company-sub {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #4a6fa5;
+        margin-top: 2px;
+      }
+
+      /* NEW DIVIDER STYLE */
+      .gold-divider {
+        margin: 24px 36px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .gold-divider::before,
+      .gold-divider::after {
+        content: "";
+        height: 1px;
+        background: #c8922a;
+        opacity: 0.45;
+        flex: 1;
+      }
+
+      .gold-divider span {
+        width: 6px;
+        height: 6px;
+        background: #c8922a;
+        transform: rotate(45deg);
+        opacity: 0.8;
+      }
+
+      .person-block {
+        padding: 18px 24px 0;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid #c8922a;
+        flex-shrink: 0;
+      }
+
+      .person-name {
+        font-size: 17px;
+        font-weight: 600;
+        color: #e8edf5;
+      }
+
+      .person-title {
+        font-size: 12px;
+        color: #4a6fa5;
+        margin-top: 3px;
+        letter-spacing: 0.05em;
+      }
+
+      .person-office {
+        font-size: 11px;
+        color: #c8922a;
+        margin-top: 4px;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+        line-height: 1.4;
+      }
+
+      .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        margin: 22px 24px 0;
+        background: #1a2540;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid #1a2540;
+      }
+
+      .stat-cell {
+        background: #0d1428;
+        padding: 16px 8px;
+        text-align: center;
+        min-width: 0;
+        text-decoration: none;
+        display: block;
+      }
+
+      .stat-icon {
+        font-size: 20px;
+        color: #c8922a;
+        margin-bottom: 8px;
+      }
+
+      .stat-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18px;
+        letter-spacing: 0.08em;
+        color: #c8922a;
+        margin-bottom: 7px;
+      }
+
+      .stat-label {
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #4a6fa5;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+      }
+
+      .action-row {
+        display: flex;
+        justify-content: center;
+        padding: 20px 24px 0;
+      }
+
+      .btn-primary {
+        width: 210px;
+        background: #c8922a;
+        color: #0a0f1e;
+        border: none;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .social-row {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        padding: 20px 24px 0;
+      }
+
+      .social-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        background: #0d1428;
+        border: 0.5px solid #1e2e4a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .social-btn i {
+        font-size: 18px;
+        color: #4a6fa5;
+      }
+
+      .section-label {
+        padding: 20px 24px 0;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #4a6fa5;
+      }
+
+      .team-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 24px 0;
+      }
+
+      .team-card {
+        background: #0d1428;
+        border: 0.5px solid #1e2e4a;
+        border-radius: 12px;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .team-photo {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #1a2540;
+        flex-shrink: 0;
+      }
+
+      .team-info {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .team-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #e8edf5;
+      }
+
+      .team-position {
+        font-size: 11px;
+        color: #4a6fa5;
+        margin-top: 3px;
+        letter-spacing: 0.04em;
+      }
+
+      .team-actions {
+        display: flex;
+        gap: 8px;
+        margin-top: 10px;
+      }
+
+      .team-action-btn {
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+        background: #1a2540;
+        border: 0.5px solid #2a3b58;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+
+      .team-action-btn i {
+        font-size: 15px;
+      }
+
+      .team-action-btn.wa i {
+        color: #25d366;
+      }
+      .team-action-btn.wc i {
+        color: #07c160;
+      }
+      .team-action-btn.ph i {
+        color: #c8922a;
+      }
+
+      .card-footer {
+        padding: 20px 24px 32px;
+        text-align: center;
+      }
+
+      .footer-text {
+        font-size: 10px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2a3b58;
+      }
+
+      .footer-gold {
+        color: #c8922a;
+        opacity: 0.7;
+      }
+
+      @keyframes routePulse {
+        0% {
+          stroke-dashoffset: 800;
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          stroke-dashoffset: 0;
+          opacity: 0.7;
+        }
+      }
+
+      @keyframes dotPulse {
+        0%,
+        100% {
+          r: 3;
+          opacity: 0.6;
+        }
+        50% {
+          r: 5;
+          opacity: 1;
+        }
+      }
+
+      .route-line {
+        stroke-dasharray: 800;
+        animation: routePulse 6s linear infinite;
+      }
+
+      .route-dot {
+        animation: dotPulse 2s ease-in-out infinite;
+      }
+      .route-dot-2 {
+        animation: dotPulse 2s ease-in-out infinite 0.7s;
+      }
+      .route-dot-3 {
+        animation: dotPulse 2s ease-in-out infinite 1.4s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card">
+      <div class="hero">
+        <svg
+          class="globe-svg"
+          width="260"
+          height="260"
+          viewBox="0 0 260 260"
+          fill="none">
+          <circle
+            cx="130"
+            cy="130"
+            r="120"
+            stroke="#4A6FA5"
+            stroke-width="0.8" />
+          <ellipse
+            cx="130"
+            cy="130"
+            rx="50"
+            ry="120"
+            stroke="#4A6FA5"
+            stroke-width="0.6" />
+          <ellipse
+            cx="130"
+            cy="130"
+            rx="90"
+            ry="120"
+            stroke="#4A6FA5"
+            stroke-width="0.5" />
+          <ellipse
+            cx="130"
+            cy="130"
+            rx="120"
+            ry="44"
+            stroke="#4A6FA5"
+            stroke-width="0.6" />
+          <ellipse
+            cx="130"
+            cy="130"
+            rx="120"
+            ry="80"
+            stroke="#4A6FA5"
+            stroke-width="0.5" />
+          <line
+            x1="10"
+            y1="130"
+            x2="250"
+            y2="130"
+            stroke="#4A6FA5"
+            stroke-width="0.5" />
+          <line
+            x1="130"
+            y1="10"
+            x2="130"
+            y2="250"
+            stroke="#4A6FA5"
+            stroke-width="0.5" />
+        </svg>
+
+        <svg class="route-svg" viewBox="0 0 420 260" fill="none">
+          <path
+            class="route-line"
+            d="M 60 160 Q 140 80 210 130 Q 280 170 360 100"
+            stroke="#C8922A"
+            stroke-width="1.2"
+            fill="none"
+            opacity="0.8" />
+          <path
+            class="route-line"
+            d="M 90 180 Q 200 200 290 160 Q 350 140 400 170"
+            stroke="#4A6FA5"
+            stroke-width="0.8"
+            fill="none"
+            opacity="0.6"
+            style="animation-delay: 2s" />
+          <circle class="route-dot" cx="60" cy="160" r="3" fill="#C8922A" />
+          <circle class="route-dot-2" cx="210" cy="130" r="3" fill="#C8922A" />
+          <circle class="route-dot-3" cx="360" cy="100" r="3" fill="#C8922A" />
+          <circle cx="90" cy="180" r="2.5" fill="#4A6FA5" opacity="0.7" />
+          <circle cx="290" cy="160" r="2.5" fill="#4A6FA5" opacity="0.7" />
+        </svg>
+
+        <div class="hero-overlay"></div>
+        <span class="hero-tagline">Since 1998</span>
+      </div>
+
+      <div class="identity">
+        <div class="company-logo-row">
+          <img src="logo.png" alt="Puya Cargo Logo" class="company-logo" />
+
+          <div>
+            <div class="company-name">Puya cargo</div>
+          </div>
+        </div>
+        <div class="company-sub">IMPORTS AND EXPORTS LIMITED COMPANY</div>
+      </div>
+
+      <div class="gold-divider"><span></span></div>
+
+      <div class="person-block">
+        <img src="mohammad.jpeg" alt="Mohammad" class="avatar" />
+        <div>
+          <div class="person-name">Mohammad</div>
+          <div class="person-title">Founder & Managing Director</div>
+          <div class="person-office">
+            <i
+              class="ti ti-map-pin"
+              aria-hidden="true"
+              style="font-size: 12px"></i>
+            CHINA, YIWU CITY, Chouzhou Bei Road 999, Guomao Building 205-207
+            office
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <a class="stat-cell" href="tel:+8615099999980">
+          <div class="stat-icon"><i class="ti ti-phone"></i></div>
+          <div class="stat-title">Phone</div>
+          <div class="stat-label">+86 150 9999 9980</div>
+        </a>
+
+        <a class="stat-cell" href="https://puyacargo.com" target="_blank">
+          <div class="stat-icon"><i class="ti ti-world"></i></div>
+          <div class="stat-title">Website</div>
+          <div class="stat-label">puyacargo.com</div>
+        </a>
+
+        <a class="stat-cell" href="mailto:puyacargo@workmail.com">
+          <div class="stat-icon"><i class="ti ti-mail"></i></div>
+          <div class="stat-title">Email</div>
+          <div class="stat-label">puyacargo@workmail.com</div>
+        </a>
+      </div>
+
+      <div class="action-row">
+        <button class="btn-primary" onclick="saveContact()">
+          <i class="ti ti-address-book" aria-hidden="true"></i>
+          Save Contact
+        </button>
+      </div>
+
+      <div class="social-row">
+        <a
+          class="social-btn"
+          href="https://wa.me/8615099999980"
+          target="_blank"
+          title="WhatsApp">
+          <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a class="social-btn" href="#" title="WeChat">
+          <i class="ti ti-brand-wechat" aria-hidden="true"></i>
+        </a>
+        <a
+          class="social-btn"
+          href="https://www.google.com/maps/search/?api=1&query=Guomao+Building+205-207+Yiwu+China"
+          target="_blank"
+          title="Location">
+          <i class="ti ti-map-2" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="gold-divider" style="margin-top: 24px"><span></span></div>
+
+      <div class="section-label">Our Team</div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="reza.png" alt="Reza" class="team-photo" />
+          <div class="team-info">
+            <div class="team-name">Reza</div>
+            <div class="team-position">Senior Sourcing Specialist</div>
+            <div class="team-actions">
+              <a
+                class="team-action-btn wa"
+                href="https://wa.me/9715067912151"
+                target="_blank">
+                <i class="ti ti-brand-whatsapp"></i>
+              </a>
+              <a class="team-action-btn ph" href="tel:+9715067912151">
+                <i class="ti ti-phone"></i>
+              </a>
+              <a class="team-action-btn wc" href="#">
+                <i class="ti ti-brand-wechat"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <img src="amir.png" alt="Amir" class="team-photo" />
+          <div class="team-info">
+            <div class="team-name">Amir</div>
+            <div class="team-position">International Logistics Coordinator</div>
+            <div class="team-actions">
+              <a
+                class="team-action-btn wa"
+                href="https://wa.me/8615067058786"
+                target="_blank">
+                <i class="ti ti-brand-whatsapp"></i>
+              </a>
+              <a class="team-action-btn ph" href="tel:+8615067058786">
+                <i class="ti ti-phone"></i>
+              </a>
+              <a class="team-action-btn wc" href="#">
+                <i class="ti ti-brand-wechat"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <div class="footer-text">
+          <span class="footer-gold">▲</span> PUYA IMPORT AND EXPORT LIMITED
+          COMPANY
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function saveContact() {
+        const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Mohammad
+ORG:PUYA IMPORT AND EXPORT LIMITED COMPANY
+TITLE:Founder & Managing Director
+TEL;TYPE=WORK:+8615099999980
+EMAIL:puyacargo@workmail.com
+URL:https://puyacargo.com
+ADR;TYPE=WORK:;;Guomao Building 205-207, Chouzhou Bei Road 999;Yiwu City;; ;China
+END:VCARD`;
+
+        const blob = new Blob([vcard], { type: "text/vcard" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+
+        a.href = url;
+        a.download = "Puyacargo-contact.vcf";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+      }
+    </script>
+  </body>
+</html>
