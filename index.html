@@ -649,13 +649,13 @@
       function saveContact() {
         const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:Mohammad
-ORG:PUYA IMPORT AND EXPORT LIMITED COMPANY
-TITLE:Founder & Managing Director
+N:Sahragard;Mohammad;;;
+FN:Mohammad Sahragard
+ORG:PUYA CARGO
 TEL;TYPE=WORK:+8615099999980
 EMAIL:puyacargo@workmail.com
 URL:https://puyacargo.com
-ADR;TYPE=WORK:;;Guomao Building 205-207, Chouzhou Bei Road 999;Yiwu City;; ;China
+ADR;TYPE=WORK:;;Guomao Building 205-207, Chouzhou Bei Road 999;Yiwu City;;;China
 END:VCARD`;
 
         const blob = new Blob([vcard], { type: "text/vcard" });
