@@ -413,6 +413,56 @@
       .route-dot-3 {
         animation: dotPulse 2s ease-in-out infinite 1.4s;
       }
+      .wechat-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 8, 23, 0.82);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .wechat-modal.active {
+        display: flex;
+      }
+
+      .wechat-box {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        background: #071a35;
+        border: 1px solid rgba(200, 146, 42, 0.35);
+        border-radius: 22px;
+        padding: 24px;
+        text-align: center;
+      }
+
+      .wechat-box h3 {
+        font-size: 16px;
+        margin-bottom: 16px;
+        color: #e8edf5;
+      }
+
+      .wechat-box img {
+        width: 220px;
+        max-width: 100%;
+        border-radius: 16px;
+        background: white;
+        padding: 10px;
+      }
+
+      .wechat-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        background: none;
+        border: none;
+        color: #c8922a;
+        font-size: 26px;
+        cursor: pointer;
+      }
     </style>
   </head>
 
@@ -566,9 +616,13 @@
           title="WhatsApp">
           <i class="ti ti-brand-whatsapp" aria-hidden="true"></i>
         </a>
-        <a class="social-btn" href="#" title="WeChat">
-          <i class="ti ti-brand-wechat" aria-hidden="true"></i>
-        </a>
+        <a
+  class="social-btn"
+  href="#"
+  onclick="openWechatQR('wechat-mohammad.jpeg'); return false;"
+  title="WeChat">
+  <i class="ti ti-brand-wechat" aria-hidden="true"></i>
+</a>
         <a
           class="social-btn"
           href="https://www.google.com/maps/search/?api=1&query=Guomao+Building+205-207+Yiwu+China"
@@ -598,7 +652,13 @@
               <a class="team-action-btn ph" href="tel:+9715067912151">
                 <i class="ti ti-phone"></i>
               </a>
-              <a class="team-action-btn wc" href="#">
+              <a
+                class="team-action-btn wc"
+                href="#"
+                onclick="
+                  openWechatQR('wechat-reza.jpeg');
+                  return false;
+                ">
                 <i class="ti ti-brand-wechat"></i>
               </a>
             </div>
@@ -620,7 +680,13 @@
               <a class="team-action-btn ph" href="tel:+8615067058786">
                 <i class="ti ti-phone"></i>
               </a>
-              <a class="team-action-btn wc" href="#">
+              <a
+                class="team-action-btn wc"
+                href="#"
+                onclick="
+                  openWechatQR('amir-qr.png');
+                  return false;
+                ">
                 <i class="ti ti-brand-wechat"></i>
               </a>
             </div>
@@ -635,7 +701,13 @@
         </div>
       </div>
     </div>
-
+<div id="wechatModal" class="wechat-modal" onclick="closeWechatQR()">
+  <div class="wechat-box" onclick="event.stopPropagation()">
+    <button class="wechat-close" onclick="closeWechatQR()">×</button>
+    <h3>Scan WeChat QR Code</h3>
+    <img id="wechatQRImage" src="" alt="WeChat QR Code">
+  </div>
+</div>
     <script>
       function saveContact() {
         const vcard = `BEGIN:VCARD
@@ -662,6 +734,15 @@ END:VCARD`;
 
         URL.revokeObjectURL(url);
       }
+      function openWechatQR(imagePath) {
+        document.getElementById("wechatQRImage").src = imagePath;
+        document.getElementById("wechatModal").classList.add("active");
+      }
+
+      function closeWechatQR() {
+        document.getElementById("wechatModal").classList.remove("active");
+      }
     </script>
+    </div>
   </body>
 </html>
