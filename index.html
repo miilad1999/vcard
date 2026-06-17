@@ -444,7 +444,17 @@
         margin-bottom: 16px;
         color: #e8edf5;
       }
-
+.team-save-btn{
+  margin-top:10px;
+  background:#c8922a;
+  color:#0a0f1e;
+  border:none;
+  border-radius:7px;
+  padding:9px 12px;
+  font-size:12px;
+  font-weight:600;
+  cursor:pointer;
+}
       .wechat-box img {
         width: 220px;
         max-width: 100%;
@@ -663,6 +673,9 @@
               </a>
             </div>
           </div>
+          <button class="team-save-btn" onclick="saveTeamContact('Reza', 'Senior Sourcing Specialist', '+9715067912151')">
+  Save Contact
+</button>
         </div>
 
         <div class="team-card">
@@ -691,6 +704,9 @@
               </a>
             </div>
           </div>
+          <button class="team-save-btn" onclick="saveTeamContact('Amir', 'International Logistics Coordinator', '+8615067058786')">
+  Save Contact
+</button>
         </div>
       </div>
 
@@ -709,40 +725,60 @@
   </div>
 </div>
     <script>
-      function saveContact() {
-        const vcard = `BEGIN:VCARD
+function saveContact() {
+  const vcard = `BEGIN:VCARD
 VERSION:3.0
 N:Sahragard;Mohammad;;;
 FN:Mohammad Sahragard
 ORG:PUYA CARGO
+TITLE:Founder & CEO
 TEL;TYPE=WORK:+8615099999980
 EMAIL:puyacargo@workmail.com
 URL:https://puyacargo.com
 ADR;TYPE=WORK:;;Guomao Building 205-207, Chouzhou Bei Road 999;Yiwu City;;;China
 END:VCARD`;
 
-        const blob = new Blob([vcard], { type: "text/vcard" });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
+  downloadVCard(vcard, "Mohammad-Sahragard.vcf");
+}
 
-        a.href = url;
-        a.download = "Puyacargo-contact.vcf";
+function saveTeamContact(name, title, phone, email) {
+  const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:${name}
+ORG:PUYA CARGO
+TITLE:${title}
+TEL;TYPE=WORK:${phone}
+EMAIL:${email}
+URL:https://puyacargo.com
+END:VCARD`;
 
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+  downloadVCard(vcard, `${name}.vcf`);
+}
 
-        URL.revokeObjectURL(url);
-      }
-      function openWechatQR(imagePath) {
-        document.getElementById("wechatQRImage").src = imagePath;
-        document.getElementById("wechatModal").classList.add("active");
-      }
+function downloadVCard(vcard, filename) {
+  const blob = new Blob([vcard], { type: "text/vcard" });
+  const url = URL.createObjectURL(blob);
 
-      function closeWechatQR() {
-        document.getElementById("wechatModal").classList.remove("active");
-      }
-    </script>
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  URL.revokeObjectURL(url);
+}
+
+function openWechatQR(imagePath) {
+  document.getElementById("wechatQRImage").src = imagePath;
+  document.getElementById("wechatModal").classList.add("active");
+}
+
+function closeWechatQR() {
+  document.getElementById("wechatModal").classList.remove("active");
+}
+</script>
     </div>
   </body>
 </html>
